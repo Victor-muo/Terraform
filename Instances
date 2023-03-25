@@ -8,6 +8,10 @@ provider "aws" {
 resource "aws_instance" "example" {
   ami           = "ami-08d4ac5b634553e16"
   instance_type = "t2.micro"
+  
+  tags = {
+   Name = "test_instance"
+   }
 }
 
 # Create S3 bucket
