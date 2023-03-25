@@ -1,18 +1,1 @@
-EC2-Instance:
-
-provider "aws" {
-  region = "us-east-1"
-}
-
-# Specify the EC2 details
-resource "aws_instance" "example" {
-  ami           = "ami-08d4ac5b634553e16"
-  instance_type = "t2.micro"
-}
-
-# Create S3 bucket
-resource "aws_s3_bucket" "example" {
-  # NOTE: S3 bucket names must be unique across _all_ AWS accounts
-  bucket = "samples3bucket"
-}
-
+Contains 3 branches with codes to create instances and buckets, modules and dependencies
