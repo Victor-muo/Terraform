@@ -1,0 +1,78 @@
+Instance Module
+--------------
+main.tf
+-------
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = var.amiid
+  instance_type = var.type
+}
+
+variable.tf
+-----------
+variable "amiid" {
+  default = "ami-0778521d914d23bc1"
+}
+
+variable "type" {
+  default = "t2.micro"
+}
+
+Output.tf
+---------
+output "id" {
+ value = aws_instance.example.id
+}
+
+
+EIP Module
+---------
+Main.tf
+-------
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_eip" "ip" {
+  instance = var.instanceid
+}
+
+Variable.tf
+----------
+variable "instanceid" {
+}
+
+---Root Module---
+$ mkdir rootmod
+$ cd rootmod
+$ vi main.tf
+------------
+module "instance" {
+   source = "../modules/instance"
+   amiid = var.rootami
+   type = var.roottype
+}
+
+module "eip" {
+   source = "../modules/eip"
+   instanceid = module.instance.id
+}
+
+$ vi variables.tf
+------------------
+variable "rootami" {
+  default = "ami-08e637cea2f053dfa"
+}
+
+variable "roottype" {
+  default = "t2.micro"
+}
+
+
+amiid = "ami-0778521d914d23bc1"
+amiid = "ami-08e637cea2f053dfa"
+amiid = "ami-0fe472d8a85bc7b0e"
+
