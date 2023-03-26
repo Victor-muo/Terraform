@@ -24,7 +24,7 @@ ____________________________________________
 #backend block to store .tfstate file remotely
 terraform{
   backend "s3" {
-     bucket = "terraform-backend-statefile222"
+     bucket = "vmuotfstate-remote-storage"
      key = "default/terraform.tfstate" # path & file which will hold the state #
      region = "us-east-1"
   }
