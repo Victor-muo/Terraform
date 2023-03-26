@@ -8,7 +8,7 @@ provider "aws" {
 resource "aws_instance" "example" {
   ami           = "ami-08d4ac5b634553e16"
   instance_type = "t2.micro"
-  
+
   tags = {
    Name = "test_instance"
    }
@@ -17,9 +17,10 @@ resource "aws_instance" "example" {
 # Create S3 bucket
 resource "aws_s3_bucket" "example" {
   # NOTE: S3 bucket names must be unique across _all_ AWS accounts
-  bucket = "samples3bucket"
+  bucket = "vmuotfstate-remote-storage"
 }
 
+____________________________________________
 #backend block to store .tfstate file remotely
 terraform{
   backend "s3" {
