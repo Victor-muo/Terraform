@@ -20,3 +20,11 @@ resource "aws_s3_bucket" "example" {
   bucket = "samples3bucket"
 }
 
+#backend block to store .tfstate file remotely
+terraform{
+  backend "s3" {
+     bucket = "terraform-backend-statefile222"
+     key = "default/terraform.tfstate" # path & file which will hold the state #
+     region = "us-east-1"
+  }
+}
